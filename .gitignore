@@ -1,0 +1,28 @@
+# Carpetas
+node_modules/
+__pycache__
+env/
+venv/
+
+# Archivos sensibles
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+
+# Archivos temporales
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Archivos de IDEs
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
