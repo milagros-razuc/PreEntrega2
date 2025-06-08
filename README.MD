@@ -19,7 +19,7 @@
 ## INTRODUCCION 
 
 >Este proyecto consiste en el desarrollo de una API RESTful que permite realizar operaciones CRUD (Crear, Leer, Actualizar y Eliminar) sobre una colección de productos almacenados en una base de datos MongoDB .
-La API está desarrollada con Node.js y Express , siguiendo buenas prácticas de diseño de APIs REST.
+La API está desarrollada con Node.js y Express , siguiendo buenas prácticas de diseño de APIs REST. Fue desarrollada por Milagros Razuc y Rebeca Ozuna
 
 ## ESTRUCTURA DE DATOS
 Cada producto tiene los siguientes campos:
