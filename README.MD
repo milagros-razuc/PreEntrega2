@@ -42,7 +42,7 @@ Esta ruta devuelve un mensaje de bienvenida y sirve como punto de entrada princi
 |:-----:|------|------------|
 |GET|[/productos](/productos)| Obtiene todos los productos|
 |GET|[/productos/:codigo](/productos/icodigo)|Obtiene un producto por su codigo|
-|POST|[/productos/](/productos/)|Crea un nuevo producto|
+|POST|[/productos/](/productos)|Crea un nuevo producto|
 |PUT|[/productos/:codigo](/productos/:codigo)|Actualiza un producto existente|
 |DELETE|[/productos/:codigo](/productos/:codigo)|Elimina un producto por su ID|
 
@@ -88,7 +88,7 @@ GET http://localhost:<PORT>/productos/7890
 
 *REQUEST*
 ```
-POST http://localhost:<PORT>/productos/
+POST http://localhost:<PORT>/productos
 
 Content-Type: json
      {
@@ -113,8 +113,11 @@ Producto creado correctamente:
 
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
-|Se envia un JSON vacio|`400`|Error en el formato de datos enviados |
+|No se envia un objeto JSON |`400`|Error en el formato de datos enviados |
+|El campo `nombre` no existe|`400`|El campo "nombre" es requerido |
 |El campo `codigo` no existe o no es número|`400`|El campo "codigo" es requerido y debe ser un número' |
+|El campo `precio` no existe o no es número|`400`|El campo "precio" es requerido y debe ser un número' |
+|El campo `categoria` no existe|`400`|El campo "categoria" es requerido |
 |El `codigo` ya existe en la base de datos |`400`| Ya existe un producto con el código `<codigo>`|
 
 #### **Metodo PUT**
@@ -151,6 +154,7 @@ Content-Type: json
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
 |Se envia un JSON vacio|`400`|Error en el formato de datos recibidos. |
+|El campo `codigo` no es número|`400`|El campo código debe ser un número' |
 |El `codigo` no existe en la base de datos|`404`|Producto con código `<codigo>` no encontrado |
 
 
@@ -170,7 +174,7 @@ Producto eliminado
 
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
-|Se envia un JSON vacio|`400`|Error en el formato de datos recibidos. |
+|El campo `codigo` no es número|`400`|El campo código debe ser un número' |
 |El `codigo` no existe en la base de datos|`404`|Producto con código `<codigo>` no encontrado |
 
 
