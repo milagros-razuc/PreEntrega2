@@ -15,6 +15,7 @@
     - [**Metodo DELETE**](#metodo-delete)
       - [Permite eliminar un producto por su código.](#permite-eliminar-un-producto-por-su-código)
 - [ARCHIVO.ENV](#archivoenv)
+- [COMO CORRER EL PROYECTO](#como-correr-el-proyecto)
 
 ## INTRODUCCION 
 
@@ -192,4 +193,31 @@ MONGO_URI=mongodb+srv://<usuario>:<contraseña>@cluster0.abcd.mongodb.net/<bbdd>
 # Puerto donde correrá el servidor
 PORT=3000
 ```
+
+## COMO CORRER EL PROYECTO
+
+### Requisitos Previos
+- Node.js
+- MongoDB
+
+### Clonar el Repositorio
+```
+git clone https://github.com/milagros-razuc/PreEntrega2.git
+```
+
+### Navegar al Directorio del Proyecto
+Accede al directorio del proyecto:
+```
+cd PreEntrega2
+```
+
+### Instalar Dependencias
+Instala las dependencias necesarias ejecutando:
+```
+npm install
+```
+
+### Ejecutar la Aplicación
+???
+
 
