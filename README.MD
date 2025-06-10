@@ -43,7 +43,7 @@ Esta ruta devuelve un mensaje de bienvenida y sirve como punto de entrada princi
 |:-----:|------|------------|
 |GET|[/productos](/productos)| Obtiene todos los productos|
 |GET|[/productos/:codigo](/productos/icodigo)|Obtiene un producto por su codigo|
-|POST|[/productos/](/productos)|Crea un nuevo producto|
+|POST|[/productos](/productos)|Crea un nuevo producto|
 |PUT|[/productos/:codigo](/productos/:codigo)|Actualiza un producto existente|
 |DELETE|[/productos/:codigo](/productos/:codigo)|Elimina un producto por su ID|
 
@@ -218,6 +218,13 @@ npm install
 ```
 
 ### Ejecutar la Aplicación
-???
+```
+npm install
+```
+o 
+
+```
+node index.js
+```
 
 
