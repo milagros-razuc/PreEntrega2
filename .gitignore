@@ -4,12 +4,7 @@ __pycache__
 env/
 venv/
 
-# Archivos sensibles
-.env
-.env.local
-.env.development
-.env.test
-.env.production
+
 
 # Archivos temporales
 *.log
