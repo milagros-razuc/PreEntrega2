@@ -219,7 +219,7 @@ npm install
 
 ### Ejecutar la Aplicación
 ```
-npm install
+npm start
 ```
 o 
 
