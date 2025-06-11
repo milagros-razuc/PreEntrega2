@@ -16,6 +16,7 @@
       - [Permite eliminar un producto por su código.](#permite-eliminar-un-producto-por-su-código)
 - [ARCHIVO.ENV](#archivoenv)
 - [COMO CORRER EL PROYECTO](#como-correr-el-proyecto)
+- [DIAGRAMA DE FLUJO - ENDPOINT POST](#diagrama-de-flujo)
 
 ## INTRODUCCION 
 
@@ -228,7 +229,8 @@ node index.js
 ```
 
 
-## Diagrama de flujo - Endpoint `POST /productos` – 
+## Diagrama de flujo
+### Endpoint `POST /productos`
 
 ```mermaid
 flowchart TD
