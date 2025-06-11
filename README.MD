@@ -228,3 +228,30 @@ node index.js
 ```
 
 
+## Diagrama de flujo - Endpoint `POST /productos` – 
+
+```mermaid
+flowchart TD
+    A[POST /productos] --> B{nuevoProd definido?}
+    B -- No --> B1[400 - Error en el formato de datos]
+    B -- Si --> C{Tiene campo nombre?}
+    C -- No --> C1[400 - Campo nombre requerido]
+    C -- Si --> D{Codigo existe y es numero?}
+    D -- No --> D1[400 - Codigo requerido y debe ser numero]
+    D -- Si --> E{Precio existe y es numero?}
+    E -- No --> E1[400 - Precio debe ser un numero]
+    E -- Si --> F{Tiene categoria?}
+    F -- No --> F1[400 - Categoria requerida]
+    F -- Si --> G[Conectar a MongoDB]
+    G --> H{Conexion exitosa?}
+    H -- No --> H1[500 - Error al conectar a MongoDB]
+    H -- Si --> I[Buscar producto con mismo codigo]
+    I --> J{Producto ya existe?}
+    J -- Si --> J1[400 - Codigo duplicado]
+    J -- No --> K[Insertar nuevo producto]
+    K --> L{Insert exitoso?}
+    L -- Si --> L1[201 - Producto creado]
+    L -- No --> L2[500 - Error al insertar]
+    L1 --> M[Desconectar de MongoDB]
+    L2 --> M
+
