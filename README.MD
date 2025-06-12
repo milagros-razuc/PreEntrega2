@@ -15,6 +15,8 @@
     - [**Metodo DELETE**](#metodo-delete)
       - [Permite eliminar un producto por su código.](#permite-eliminar-un-producto-por-su-código)
 - [ARCHIVO.ENV](#archivoenv)
+- [COMO CORRER EL PROYECTO](#como-correr-el-proyecto)
+- [DIAGRAMA DE FLUJO - ENDPOINT POST](#diagrama-de-flujo)
 
 ## INTRODUCCION 
 
@@ -42,7 +44,7 @@ Esta ruta devuelve un mensaje de bienvenida y sirve como punto de entrada princi
 |:-----:|------|------------|
 |GET|[/productos](/productos)| Obtiene todos los productos|
 |GET|[/productos/:codigo](/productos/icodigo)|Obtiene un producto por su codigo|
-|POST|[/productos/](/productos/)|Crea un nuevo producto|
+|POST|[/productos](/productos)|Crea un nuevo producto|
 |PUT|[/productos/:codigo](/productos/:codigo)|Actualiza un producto existente|
 |DELETE|[/productos/:codigo](/productos/:codigo)|Elimina un producto por su ID|
 
@@ -88,7 +90,7 @@ GET http://localhost:<PORT>/productos/7890
 
 *REQUEST*
 ```
-POST http://localhost:<PORT>/productos/
+POST http://localhost:<PORT>/productos
 
 Content-Type: json
      {
@@ -113,8 +115,11 @@ Producto creado correctamente:
 
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
-|Se envia un JSON vacio|`400`|Error en el formato de datos enviados |
+|No se envia un objeto JSON |`400`|Error en el formato de datos enviados |
+|El campo `nombre` no existe|`400`|El campo "nombre" es requerido |
 |El campo `codigo` no existe o no es número|`400`|El campo "codigo" es requerido y debe ser un número' |
+|El campo `precio` no existe o no es número|`400`|El campo "precio" es requerido y debe ser un número' |
+|El campo `categoria` no existe|`400`|El campo "categoria" es requerido |
 |El `codigo` ya existe en la base de datos |`400`| Ya existe un producto con el código `<codigo>`|
 
 #### **Metodo PUT**
@@ -151,6 +156,7 @@ Content-Type: json
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
 |Se envia un JSON vacio|`400`|Error en el formato de datos recibidos. |
+|El campo `codigo` no es número|`400`|El campo código debe ser un número' |
 |El `codigo` no existe en la base de datos|`404`|Producto con código `<codigo>` no encontrado |
 
 
@@ -170,7 +176,7 @@ Producto eliminado
 
 |Problema | Error | Mensaje|
 |:-----:|------|------------|
-|Se envia un JSON vacio|`400`|Error en el formato de datos recibidos. |
+|El campo `codigo` no es número|`400`|El campo código debe ser un número' |
 |El `codigo` no existe en la base de datos|`404`|Producto con código `<codigo>` no encontrado |
 
 
@@ -188,4 +194,66 @@ MONGO_URI=mongodb+srv://<usuario>:<contraseña>@cluster0.abcd.mongodb.net/<bbdd>
 # Puerto donde correrá el servidor
 PORT=3000
 ```
+
+## COMO CORRER EL PROYECTO
+
+### Requisitos Previos
+- Node.js
+- MongoDB
+
+### Clonar el Repositorio
+```
+git clone https://github.com/milagros-razuc/PreEntrega2.git
+```
+
+### Navegar al Directorio del Proyecto
+Accede al directorio del proyecto:
+```
+cd PreEntrega2
+```
+
+### Instalar Dependencias
+Instala las dependencias necesarias ejecutando:
+```
+npm install
+```
+
+### Ejecutar la Aplicación
+```
+npm start
+```
+o 
+
+```
+node index.js
+```
+
+
+## Diagrama de flujo
+### Endpoint `POST /productos`
+
+```mermaid
+flowchart TD
+    A[POST /productos] --> B{nuevoProd definido?}
+    B -- No --> B1[400 - Error en el formato de datos]
+    B -- Si --> C{Tiene campo nombre?}
+    C -- No --> C1[400 - Campo nombre requerido]
+    C -- Si --> D{Codigo existe y es numero?}
+    D -- No --> D1[400 - Codigo requerido y debe ser numero]
+    D -- Si --> E{Precio existe y es numero?}
+    E -- No --> E1[400 - Precio debe ser un numero]
+    E -- Si --> F{Tiene categoria?}
+    F -- No --> F1[400 - Categoria requerida]
+    F -- Si --> G[Conectar a MongoDB]
+    G --> H{Conexion exitosa?}
+    H -- No --> H1[500 - Error al conectar a MongoDB]
+    H -- Si --> I[Buscar producto con mismo codigo]
+    I --> J{Producto ya existe?}
+    J -- Si --> J1[400 - Codigo duplicado]
+    J -- No --> K[Insertar nuevo producto]
+    K --> L{Insert exitoso?}
+    L -- Si --> L1[201 - Producto creado]
+    L -- No --> L2[500 - Error al insertar]
+    L1 --> M[Desconectar de MongoDB]
+    L2 --> M
 
